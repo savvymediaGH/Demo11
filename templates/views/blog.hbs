@@ -1,0 +1,57 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/images/blog.jpg')">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="site-heading">
+					<h1>Post information</h1>
+					<span class="subheading">Getting to know the latest information</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container mb-3">
+	<div class="row">
+	  <div class="col-sm-8 col-md-9">
+			<form role="search" action="/search" method="GET">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" id="keywords" name="keywords" placeholder="Search for posts">
+					<span class="input-group-btn"><button type="submit" class="btn btn-default">Search</button></span>
+				</div>
+			</form>
+	  </div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-md-9">
+			<div class="blog">
+				{{# each data.posts.results}}
+				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post mb-3">
+					<h2><span class="text-info">[{{{categoryList categories}}}]</span> <a class="text-info" href="{{postUrl slug}}">{{{title}}}</a></h2>
+					<!-- {{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}} -->
+					<p>{{{content.brief}}}</p>
+					{{#if content.extended}}<button class="btn btn-primary rounded"><a class="text-white" href="{{postUrl slug}}">Read more</a></button>{{/if}}
+					<hr>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+		<div class="col-sm-4 col-md-3">
+			<h3>Categories</h3>
+			<div style="margin-top: 30px;" class="list-group">
+				<a href="/blog" {{#ifeq section blog}}class="active list-group-item"{{else}}class="false list-group-item"{{/ifeq}}>All Categories</a>
+				{{# each data.categories }}
+				<a href="{{categoryUrl key}}" {{#ifeq section key}}class="active list-group-item"{{else}}class="false list-group-item"{{/ifeq}}>{{name}}</a>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	<div class="text-info">
+		Page: {{>pagination}}
+	</div>
+</div>

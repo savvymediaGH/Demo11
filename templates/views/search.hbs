@@ -1,0 +1,43 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/images/search.jpg')">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="site-heading">
+					<h1>Search Results</h1>
+          {{#if data.invalid}}<h2 class="subheading">No Results! Maybe change a keyword and search again</h2>
+					{{else}}<span class="subheading">search results for <strong>{{data.keywords}}</strong></span>{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container">
+  <div class="panel panel-primary">
+		<form role="search" action="/search" method="GET">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" id="keywords" name="keywords" placeholder="Search for posts">
+				<span class="input-group-btn"><button type="submit" class="btn btn-default">Search</button></span>
+			</div>
+		</form>
+
+    <table class="table table-striped">
+      <div class="container">
+        <div class="mb-5">
+          {{#if data.posts}}<h4 class="text-weight-normal">Showing {{ data.posts.length}} post</h4>{{/if}}
+        </div>
+        {{# each data.posts }}
+          <div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
+            <h2>{{#if categories}}<span class="text-info">[</span>{{{matchCategory ../data.categories categories}}}<span class="text-info">]</span> {{/if}}<a class="text-info" href="{{postUrl slug}}">{{{title}}}</a></h2>
+            <p>{{{content.brief}}}</p>
+            {{#if content.extended}}<button class="btn btn-primary rounded"><a class="text-white" href="{{postUrl slug}}">Read more</a></button>{{/if}}
+  					<hr>
+          </div>
+        {{/each}}
+      </div>
+    </table>
+  </div>
+
+</div>

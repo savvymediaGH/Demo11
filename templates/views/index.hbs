@@ -1,0 +1,38 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/images/homepage.jpg')">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<div class="site-heading">
+					<h1>Savvy Media</h1>
+					<span class="subheading">An Education and Immigration Website Demo</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+{{!< default}}
+<div class="container">
+  <div class="row">
+		<div class="col-sm-4 col-md-3">
+			<h3>Categories</h3>
+			<div style="margin-top: 30px;" class="list-group">
+				<a href="/blog" class="active list-group-item">All Categories</a>
+				{{# each data.categories }}
+				<a href="{{categoryUrl key}}" {{#ifeq section key}}class="active list-group-item"{{else}}class="false list-group-item"{{/ifeq}}>{{name}}</a>
+				{{/each}}
+			</div>
+		</div>
+    <div class="col-sm-8 col-md-9 mx-auto">
+			<p>Use keystone.js build a CMS website.</p>
+			<img src="/images/cms-home.PNG" class="img img-fluid" alt="cms-home">
+      <p>CMS homepage</p>
+			<img src="/images/cms-posts.PNG" class="img img-fluid" alt="cms-posts">
+			<p>Can create new posts</p>
+			<img src="/images/cms-post.PNG" class="img img-fluid" alt="cms-post">
+			<p>Post can be editted</p>
+    </div>
+  </div>
+</div>
