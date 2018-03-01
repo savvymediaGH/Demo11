@@ -68,6 +68,8 @@ keystone.set("nav", {
 	users: "users"
 });
 
+keystone.set("signin logo", "../images/logo-email.png");
+
 // Start Keystone to connect to your database and initialise the web server
 
 keystone.start();
